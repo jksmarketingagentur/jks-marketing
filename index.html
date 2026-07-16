@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JKS Marketing</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--accent:#6f7378;
+--accent-light:#c9cdd1;
+--dark:#151515;
+--text:#222;
+--muted:#666;
+--glass:rgba(255,255,255,.72);
+--line:rgba(0,0,0,.09);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+font-family:"Inter",sans-serif;
+color:var(--text);
+
+background:
+linear-gradient(rgba(255,255,255,.86), rgba(255,255,255,.90)),
+url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+
+overflow-x:hidden;
+}
+header{
+height:90px;
+padding:0 8%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:rgba(255,255,255,.80);
+backdrop-filter:blur(18px);
+border-bottom:1px solid var(--line);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo span{
+font-family:"Playfair Display",serif;
+font-size:38px;
+color:var(--accent);
+letter-spacing:5px;
+display:block;
+line-height:.9;
+}
+
+.logo small{
+font-size:10px;
+letter-spacing:5px;
+color:#111;
+font-weight:700;
+}
+
+nav a{
+margin:0 12px;
+text-decoration:none;
+color:#222;
+font-size:12px;
+font-weight:700;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+nav a:hover{color:var(--accent)}
+
+.nav-btn,.btn{
+display:inline-block;
+text-decoration:none;
+padding:15px 25px;
+font-size:12px;
+font-weight:800;
+letter-spacing:1px;
+text-transform:uppercase;
+transition:.3s ease;
+}
+
+.nav-btn{
+color:var(--accent);
+border:1px solid var(--accent);
+}
+
+.btn:hover,.nav-btn:hover{transform:translateY(-4px)}
+
+.hero{
+min-height:calc(100vh - 90px);
+padding:8%;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.hero-text{
+max-width:900px;
+margin:auto;
+}
+
+.label{
+color:var(--accent);
+font-size:12px;
+font-weight:800;
+letter-spacing:5px;
+margin-bottom:24px;
+}
+
+.hero h1{
+font-family:"Playfair Display",serif;
+font-size:clamp(48px,7vw,90px);
+line-height:1.04;
+font-weight:600;
+margin-bottom:30px;
+}
+
+.hero h1 span{color:var(--accent)}
+
+.subtext{
+max-width:650px;
+color:#444;
+font-size:17px;
+line-height:1.9;
+margin:0 auto 36px;
+}
+
+.silver{
+background:linear-gradient(135deg,var(--accent),var(--accent-light));
+color:white;
+box-shadow:0 18px 40px rgba(90,90,90,.22);
+}
+
+.outline{
+color:#111;
+border:1px solid var(--accent);
+background:rgba(255,255,255,.5);
+margin-left:12px;
+}
+
+section{padding:95px 8%}
+
+.section-title{
+text-align:center;
+max-width:780px;
+margin:auto;
+}
+
+.section-title h2,.about-text h2,.contact-text h2{
+font-family:"Playfair Display",serif;
+font-size:clamp(36px,5vw,58px);
+font-weight:500;
+margin-bottom:22px;
+}
+
+.section-title p,.about-text p,.contact-text p{
+color:#555;
+line-height:1.9;
+}
+
+.cards{
+margin-top:55px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:26px;
+}
+
+.card{
+background:var(--glass);
+backdrop-filter:blur(20px);
+border:1px solid var(--line);
+padding:42px 28px;
+box-shadow:0 24px 60px rgba(0,0,0,.06);
+transition:.35s ease;
+}
+
+.card:hover{
+transform:translateY(-9px);
+box-shadow:0 30px 75px rgba(80,80,80,.16);
+}
+
+.card h3{
+font-size:15px;
+text-transform:uppercase;
+letter-spacing:1.5px;
+margin-bottom:18px;
+}
+
+.card p{
+color:#555;
+font-size:14px;
+line-height:1.8;
+}
+
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:70px;
+align-items:center;
+border-top:1px solid var(--line);
+}
+
+.about-box{
+height:430px;
+background:rgba(255,255,255,.58);
+backdrop-filter:blur(18px);
+border:1px solid var(--line);
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 30px 80px rgba(0,0,0,.08);
+}
+
+.inner-logo{text-align:center}
+
+.inner-logo h2{
+font-family:"Playfair Display",serif;
+font-size:90px;
+color:var(--accent);
+letter-spacing:7px;
+}
+
+.inner-logo p{
+letter-spacing:10px;
+font-size:13px;
+font-weight:700;
+}
+
+.stats{
+margin-top:35px;
+display:flex;
+gap:30px;
+}
+
+.stats strong{
+display:block;
+font-family:"Playfair Display",serif;
+font-size:36px;
+color:var(--accent);
+}
+
+.stats span{
+font-size:13px;
+color:#555;
+}
+
+.contact{
+display:grid;
+grid-template-columns:.8fr 1.2fr;
+gap:70px;
+border-top:1px solid var(--line);
+}
+
+form{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+}
+
+input,textarea{
+width:100%;
+padding:18px;
+border:1px solid rgba(0,0,0,.12);
+background:rgba(255,255,255,.74);
+backdrop-filter:blur(12px);
+font-family:"Inter",sans-serif;
+font-size:14px;
+outline:none;
+}
+
+textarea{
+grid-column:span 2;
+min-height:150px;
+resize:none;
+}
+
+input:focus,textarea:focus{border-color:var(--accent)}
+
+button{
+grid-column:span 2;
+padding:18px;
+border:none;
+background:linear-gradient(135deg,var(--accent),var(--accent-light));
+color:white;
+font-weight:800;
+text-transform:uppercase;
+letter-spacing:1px;
+cursor:pointer;
+}
+
+.legal{
+border-top:1px solid var(--line);
+}
+
+.legal-box{
+max-width:900px;
+margin:40px auto 0;
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(20px);
+border:1px solid var(--line);
+padding:40px;
+box-shadow:0 24px 60px rgba(0,0,0,.06);
+}
+
+.legal-box h3{
+margin:28px 0 12px;
+font-size:20px;
+}
+
+.legal-box p{
+color:#555;
+line-height:1.8;
+margin-bottom:12px;
+}
+
+footer{
+padding:40px 8%;
+border-top:1px solid var(--line);
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:#666;
+background:rgba(255,255,255,.60);
+}
+
+.fade{
+opacity:0;
+transform:translateY(28px);
+transition:.8s ease;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:1050px){
+nav,.nav-btn{display:none}
+.about,.contact{grid-template-columns:1fr}
+.cards{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:600px){
+header{height:76px}
+.logo span{font-size:30px}
+.hero{padding-top:70px}
+.outline{margin-left:0;margin-top:12px}
+.cards{grid-template-columns:1fr}
+.stats{flex-direction:column}
+form{grid-template-columns:1fr}
+textarea,button{grid-column:span 1}
+footer{flex-direction:column;gap:20px;text-align:center}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">
+<span>JKS</span>
+<small>MARKETING</small>
+</div>
+
+<nav>
+<a href="#leistungen">Leistungen</a>
+<a href="#about">Über uns</a>
+<a href="#kontakt">Kontakt</a>
+<a href="#impressum">Impressum</a>
+<a href="#datenschutz">Datenschutz</a>
+</nav>
+
+<a href="#kontakt" class="nav-btn">Kostenloses Gespräch</a>
+</header>
+
+<section class="hero">
+<div class="hero-text">
+<p class="label">JKS MARKETING</p>
+<h1>Mehr Termine.<br>Mehr Kunden.<br><span>Mehr Umsatz.</span></h1>
+<p class="subtext">
+JKS Marketing hilft Unternehmen dabei, planbar neue Kunden zu gewinnen,
+hochwertige Anfragen zu erhalten und den Vertrieb professionell zu skalieren.
+</p>
+
+<a href="#kontakt" class="btn silver">Kostenloses Erstgespräch</a>
+<a href="#leistungen" class="btn outline">Mehr erfahren</a>
+</div>
+</section>
+
+<section id="leistungen">
+<div class="section-title">
+<p class="label">UNSERE LEISTUNGEN</p>
+<h2>Wir bringen Systeme zum Verkaufen.</h2>
+<p>
+Wir verbinden Marketing, Vertrieb und Strategie, damit aus Aufmerksamkeit echte Kunden werden.
+</p>
+</div>
+
+<div class="cards">
+<div class="card">
+<h3>Leadgenerierung</h3>
+<p>Wir gewinnen qualifizierte Leads für dein Unternehmen — kontinuierlich und planbar.</p>
+</div>
+<div class="card">
+<h3>Social Media Marketing</h3>
+<p>Professionelle Kampagnen für mehr Sichtbarkeit, Reichweite und qualifizierte Anfragen.</p>
+</div>
+<div class="card">
+<h3>Vertriebsberatung</h3>
+<p>Wir optimieren deine Prozesse, damit aus Gesprächen schneller Abschlüsse werden.</p>
+</div>
+<div class="card">
+<h3>Terminvereinbarung</h3>
+<p>Wir vereinbaren hochwertige Termine mit potenziellen Kunden für dein Vertriebsteam.</p>
+</div>
+</div>
+</section>
+
+<section id="about" class="about">
+<div class="about-box">
+<div class="inner-logo">
+<h2>JKS</h2>
+<p>MARKETING</p>
+</div>
+</div>
+
+<div class="about-text">
+<p class="label">ÜBER UNS</p>
+<h2>Ergebnisse. Nicht nur Versprechen.</h2>
+<p>
+JKS Marketing steht für klare Kommunikation, transparente Zusammenarbeit
+und messbare Erfolge. Unser Ziel ist einfach: mehr Kunden, mehr Sichtbarkeit
+und mehr Umsatz für dein Unternehmen.
+</p>
+
+<div class="stats">
+<div>
+<strong>100%</strong>
+<span>Fokus auf Wachstum</span>
+</div>
+<div>
+<strong>24/7</strong>
+<span>Digitale Sichtbarkeit</span>
+</div>
+<div>
+<strong>1 Ziel</strong>
+<span>Mehr Umsatz</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="kontakt" class="contact">
+<div class="contact-text">
+<p class="label">KONTAKT</p>
+<h2>Bereit für mehr Wachstum?</h2>
+<p>
+Vereinbare jetzt dein kostenloses Erstgespräch und erfahre,
+wie JKS Marketing dein Unternehmen auf das nächste Level bringt.
+</p>
+</div>
+
+<form action="https://formspree.io/f/xbdndqrw" method="POST">
+<input type="text" name="name" placeholder="Dein Name" required>
+<input type="email" name="email" placeholder="Deine E-Mail" required>
+<input type="text" name="telefon" placeholder="Deine Telefonnummer">
+<textarea name="nachricht" placeholder="Wobei können wir dir helfen?" required></textarea>
+<button type="submit">Anfrage senden</button>
+</form>
+</section>
+
+<section id="impressum" class="legal">
+<div class="section-title">
+<p class="label">RECHTLICHES</p>
+<h2>Impressum</h2>
+</div>
+
+<div class="legal-box">
+<p><strong>JKS Marketing</strong></p>
+<p>Inhaber: __________________________</p>
+<p>Straße und Hausnummer: __________________________</p>
+<p>PLZ und Ort: __________________________</p>
+<p>Deutschland</p>
+
+<h3>Kontakt</h3>
+<p>Telefon: __________________________</p>
+<p>E-Mail: __________________________</p>
+
+<h3>Umsatzsteuer-ID</h3>
+<p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: __________________________</p>
+
+<h3>Verantwortlich für den Inhalt</h3>
+<p>Verantwortlich gemäß § 18 Abs. 2 MStV: __________________________</p>
+
+<h3>Haftung für Inhalte</h3>
+<p>
+Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+Für externe Links übernehmen wir keine Haftung. Für den Inhalt verlinkter Seiten sind ausschließlich deren Betreiber verantwortlich.
+</p>
+</div>
+</section>
+
+<section id="datenschutz" class="legal">
+<div class="section-title">
+<p class="label">DATENSCHUTZ</p>
+<h2>Datenschutzerklärung</h2>
+</div>
+
+<div class="legal-box">
+<h3>1. Verantwortlicher</h3>
+<p>
+Verantwortlich für die Datenverarbeitung auf dieser Website ist:
+JKS Marketing, __________________________, __________________________.
+E-Mail: __________________________.
+</p>
+
+<h3>2. Allgemeine Hinweise</h3>
+<p>
+Der Schutz Ihrer persönlichen Daten ist uns wichtig. Personenbezogene Daten werden vertraulich
+und entsprechend den gesetzlichen Datenschutzvorschriften behandelt.
+</p>
+
+<h3>3. Kontaktformular</h3>
+<p>
+Wenn Sie uns über das Kontaktformular Anfragen senden, werden Ihre Angaben aus dem Formular
+inklusive der dort angegebenen Kontaktdaten zur Bearbeitung der Anfrage gespeichert.
+Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+</p>
+
+<h3>4. Server-Log-Dateien</h3>
+<p>
+Der Provider der Website kann automatisch Informationen in sogenannten Server-Log-Dateien erheben.
+Dazu gehören zum Beispiel Browsertyp, Betriebssystem, Referrer-URL, Hostname des zugreifenden Rechners
+und Uhrzeit der Serveranfrage.
+</p>
+
+<h3>5. Cookies</h3>
+<p>
+Diese Website verwendet in dieser Vorlage keine aktiven Tracking-Cookies. Sollten später Analyse-Tools,
+Werbeanzeigen oder externe Dienste eingebunden werden, muss diese Datenschutzerklärung angepasst werden.
+</p>
+
+<h3>6. Ihre Rechte</h3>
+<p>
+Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
+Datenübertragbarkeit sowie das Recht auf Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten.
+</p>
+
+<h3>7. Hinweis</h3>
+<p>
+Diese Datenschutzerklärung ist eine einfache Vorlage und ersetzt keine individuelle rechtliche Prüfung.
+Für eine rechtssichere Veröffentlichung sollten die Angaben an das tatsächliche Unternehmen angepasst werden.
+</p>
+</div>
+</section>
+
+<section id="rechte" class="legal">
+<div class="section-title">
+<p class="label">RECHTE</p>
+<h2>Rechte & Hinweise</h2>
+</div>
+
+<div class="legal-box">
+<p>
+Alle Inhalte dieser Website, insbesondere Texte, Gestaltung, Layouts und Grafiken,
+sind urheberrechtlich geschützt, sofern sie nicht ausdrücklich anders gekennzeichnet sind.
+</p>
+
+<p>
+Die Nutzung, Vervielfältigung oder Weitergabe von Inhalten dieser Website ist nur mit vorheriger
+schriftlicher Zustimmung von JKS Marketing gestattet.
+</p>
+
+<p>
+Trotz sorgfältiger Erstellung übernehmen wir keine Gewähr für die Aktualität, Vollständigkeit
+und Richtigkeit der bereitgestellten Inhalte.
+</p>
+</div>
+</section>
+
+<footer>
+<div class="logo">
+<span>JKS</span>
+<small>MARKETING</small>
+</div>
+<p>© 2026 JKS Marketing. Alle Rechte vorbehalten.</p>
+</footer>
+
+<script>
+const elements = document.querySelectorAll(
+".hero-text, .card, .about-box, .about-text, .contact-text, form, .legal-box"
+);
+
+elements.forEach((el) => {
+el.classList.add("fade");
+});
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach((entry) => {
+if (entry.isIntersecting) {
+entry.target.classList.add("show");
+}
+});
+}, {
+threshold: 0.15
+});
+
+elements.forEach((el) => observer.observe(el));
+</script>
+
+</body>
+</html>
