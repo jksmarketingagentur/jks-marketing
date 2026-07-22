@@ -159,7 +159,17 @@ max-width:780px;
 margin:auto;
 }
 
-.section-title h2,.about-text h2,.contact-text h2{
+.section-title 
+h2,.section-title h2, .about-text h2, .contact-text h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(28px,5vw,58px);
+    font-weight:500;
+    margin-bottom:22px;
+    line-height:1.1;
+    overflow-wrap:break-word;
+    max-width:100%;
+}
+.about-text h2,.contact-text h2{
 font-family:"Playfair Display",serif;
 font-size:clamp(36px,5vw,58px);
 font-weight:500;
@@ -363,12 +373,80 @@ header{height:76px}
 form{grid-template-columns:1fr}
 textarea,button{grid-column:span 1}
 footer{flex-direction:column;gap:20px;text-align:center}
+}#webseite {
+display: none;
+}
+
+#passwort-screen {
+position: fixed;
+inset: 0;
+z-index: 99999;
+background: #f4f4f4;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.passwort-box {
+width: 90%;
+max-width: 380px;
+padding: 40px;
+background: white;
+border-radius: 16px;
+box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+text-align: center;
+}
+
+.passwort-box input {
+width: 100%;
+box-sizing: border-box;
+padding: 14px;
+margin-top: 15px;
+border: 1px solid #ccc;
+border-radius: 8px;
+font-size: 16px;
+}
+
+.passwort-box button {
+width: 100%;
+padding: 14px;
+margin-top: 12px;
+border: none;
+border-radius: 8px;
+background: #111;
+color: white;
+font-size: 16px;
+cursor: pointer;
+}
+
+#fehler {
+color: #b00020;
+margin-top: 12px;
 }
 </style>
+
 </head>
 
 <body>
+<div id="passwort-screen">
+<div class="passwort-box">
+<h2>JKS Marketing</h2>
+<p>Bitte Passwort eingeben</p>
 
+<input
+type="password"
+id="passwort"
+placeholder="Passwort"
+onkeydown="if(event.key === 'Enter') pruefen()"
+>
+
+<button onclick="pruefen()">Öffnen</button>
+
+<p id="fehler"></p>
+</div>
+</div>
+
+<div id="webseite">
 <header>
 <div class="logo">
 <span>JKS</span>
@@ -621,6 +699,23 @@ threshold: 0.15
 
 elements.forEach((el) => observer.observe(el));
 </script>
+</div>
 
+<script>
+function pruefen() {
+const eingegebenesPasswort =
+document.getElementById("passwort").value;
+
+const richtigesPasswort = "JKS-2026";
+
+if (eingegebenesPasswort === richtigesPasswort) {
+document.getElementById("passwort-screen").style.display = "none";
+document.getElementById("webseite").style.display = "block";
+} else {
+document.getElementById("fehler").textContent =
+"Das Passwort ist falsch.";
+}
+}
+</script>
 </body>
 </html>
